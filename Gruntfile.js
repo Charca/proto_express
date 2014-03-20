@@ -57,6 +57,17 @@ module.exports = function (grunt) {
             server: ['.tmp'],
         },
 
+        // Bower config
+        bower: {
+            install: {
+                options: {
+                    copy: false,
+                    layout: 'byComponent',
+                    install: true
+                }
+            }
+        },
+
         // Hint Config
         jshint: {
             options: {
@@ -254,6 +265,7 @@ module.exports = function (grunt) {
     // Register Tasks
     // Workon
     grunt.registerTask('workon', 'Start working on this project.', [
+        'bower:install',
         'jshint',
         'sass:dev',
         'express:dev',
@@ -273,6 +285,7 @@ module.exports = function (grunt) {
     // Build
     grunt.registerTask('build', 'Build production ready assets and views.', [
         'clean:dist',
+        'bower:install',
         'concurrent:dist',
         'sass:dev',
         'useminPrepare',

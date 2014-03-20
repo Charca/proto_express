@@ -26,10 +26,14 @@
     "grunt-svgmin": "~0.2.0",
     "grunt-concurrent": "~0.3.0",
     "load-grunt-tasks": "~0.1.0",
-    "time-grunt": "~0.1.1"
+    "time-grunt": "~0.1.1",
+    "grunt-bower-task": "~0.3.4"
   },
   "engines": {
     "node": ">=0.8.0",
     "npm": "1.2.x"
+  },
+  "scripts": {
+    "postinstall": "echo Running grunt build task; ./node_modules/grunt/bin/grunt build"
   }
 }
