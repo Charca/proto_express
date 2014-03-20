@@ -298,4 +298,20 @@ module.exports = function (grunt) {
         'usemin',
     ]);
 
+    // Heroku Build
+    grunt.registerTask('heroku:production', 'Build production ready assets and views for Heroku deploy', [
+      'clean:dist',
+      'bower:install',
+      'concurrent:dist',
+      'sass:dev',
+      'useminPrepare',
+      'imagemin',
+      'concat',
+      'cssmin',
+      'uglify',
+      'copy:dist',
+      'rev',
+      'usemin',
+    ]);
+
 };
