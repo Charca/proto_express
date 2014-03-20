@@ -36,6 +36,6 @@
     "npm": "1.2.x"
   },
   "scripts": {
-    "postinstall": "echo Running grunt build task; ./node_modules/.bin/grunt build"
+    "postinstall": "grunt build"
   }
 }
