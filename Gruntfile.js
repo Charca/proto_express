@@ -113,18 +113,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // Open Config
-        open: {
-            site: {
-                path: 'http://localhost:3000',
-                app: 'Google Chrome'
-            },
-            editor: {
-                path: './',
-                app: 'Sublime Text 2'
-            },
-        },
-
         // Rev Config
         rev: {
             dist: {
@@ -262,15 +250,13 @@ module.exports = function (grunt) {
         },
     });
 
-    // Register Tasks
+    // Register Tasks: Development
     // Workon
     grunt.registerTask('workon', 'Start working on this project.', [
         'bower:install',
         'jshint',
         'sass:dev',
         'express:dev',
-        // 'open:site',
-        // 'open:editor',
         'watch'
     ]);
 
@@ -281,9 +267,9 @@ module.exports = function (grunt) {
         'watch'
     ]);
 
-
-    // Build
-    grunt.registerTask('build', 'Build production ready assets and views.', [
+    // Register Tasks: Production
+    // List of tasks: Will run on both Local Build and Heroku Build
+    var productionTasks = [
         'clean:dist',
         'bower:install',
         'concurrent:dist',
@@ -296,22 +282,12 @@ module.exports = function (grunt) {
         'copy:dist',
         'rev',
         'usemin',
-    ]);
+    ];
+
+    // Build
+    grunt.registerTask('build', 'Build production ready assets and views.', productionTasks);
 
     // Heroku Build
-    grunt.registerTask('heroku:production', 'Build production ready assets and views for Heroku deploy', [
-      'clean:dist',
-      'bower:install',
-      'concurrent:dist',
-      'sass:dev',
-      'useminPrepare',
-      'imagemin',
-      'concat',
-      'cssmin',
-      'uglify',
-      'copy:dist',
-      'rev',
-      'usemin',
-    ]);
+    grunt.registerTask('heroku:production', 'Build production ready assets and views for Heroku deploy', productionTasks);
 
 };
