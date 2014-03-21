@@ -281,7 +281,7 @@ module.exports = function (grunt) {
         'uglify',
         'copy:dist',
         'rev',
-        'usemin',
+        'usemin'
     ];
 
     // Build
